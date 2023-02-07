@@ -1,0 +1,26 @@
+{
+  "name": "planner",
+  "version": "1.0.0",
+  "description": "This planner will help the client to organize his week, his tasks and at what times they happen.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Felipe",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.3"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
