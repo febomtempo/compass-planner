@@ -1,8 +1,10 @@
 const express = require('express');
+const db = require('../database/connect');
 
 const app = express();
-
 app.use(express.json());
+
+db();
 
 app.get('/', (req, res) => {
   res.status(200).json({
