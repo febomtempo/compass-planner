@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const db = require('../database/connect');
 const eventRouter = require('../routes/eventRoutes');
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 db();
