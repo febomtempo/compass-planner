@@ -18,6 +18,16 @@ const EventsController = {
       console.log(`Erro: ${err}`);
     }
   },
+  get: async (req, res) => {
+    try {
+      const events = await Event.find();
+      res.status(200).json({
+        events,
+      });
+    } catch (err) {
+      console.log(`Erro: ${err}`);
+    }
+  },
 };
 
 module.exports = EventsController;
