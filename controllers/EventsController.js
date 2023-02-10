@@ -32,13 +32,24 @@ exports.createEvent = async (req, res) => {
 exports.getAllEvents = async (req, res) => {
   try {
     const events = await Event.find();
-    res.status(200).json({
-      events,
-    });
+    const weekDay = req.query.dayOfTheWeek;
+    if (req.query.dayOfTheWeek) {
+      const eventsFilteredByWeekDay = events.filter(
+        (event) => event.dateTime.getDay() === +weekDay
+      );
+      res.status(200).json({
+        eventsFilteredByWeekDay,
+      });
+    } else {
+      res.status(200).json({
+        events,
+      });
+    }
   } catch (err) {
     console.log(`Erro: ${err}`);
   }
 };
+
 exports.getEventById = async (req, res) => {
   try {
     const { id } = req.params;
