@@ -27,7 +27,7 @@ exports.createUser = async (req, res) => {
       lastName: req.body.lastName,
       birthDate: req.body.birthDate,
       city: req.body.city,
-      coumtry: req.body.coumtry,
+      country: req.body.country,
       email: req.body.email,
       password: req.body.password,
       confirmPassword: req.body.confirmPassword,
