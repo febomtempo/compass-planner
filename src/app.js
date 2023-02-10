@@ -9,13 +9,6 @@ app.use(express.json());
 
 db();
 
-app.get('/', (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    message: `It's working!!! ✌️`,
-  });
-});
-
 app.use('/api/v1/events', eventRouter);
 
 const port = process.env.PORT || 3000;
