@@ -50,3 +50,33 @@ exports.createUser = async (req, res) => {
     console.log(`Erro: ${err}`);
   }
 };
+
+exports.signIn = async (req, res) => {
+  try {
+    const reqData = {
+      email: req.body.email,
+      password: req.body.password,
+    };
+    console.log(reqData);
+    const userData = await User.findOne({
+      email: reqData.email,
+    }).exec();
+    console.log(userData);
+    if (
+      reqData.email === userData.email &&
+      reqData.password === userData.password
+    ) {
+      res.status(200).json({
+        status: 'success',
+        message: 'Successful sign in',
+      });
+    } else {
+      res.status(401).json({
+        status: 'fail',
+        message: 'Incorrect e-mail or password',
+      });
+    }
+  } catch (err) {
+    console.log(`Erro: ${err}`);
+  }
+};
