@@ -8,6 +8,9 @@ router
   .get(EventsController.getAllEvents)
   .post(EventsController.checkBody, EventsController.createEvent);
 
-router.route('/:id').get(EventsController.getEventById);
+router
+  .route('/:id')
+  .get(EventsController.getEventById)
+  .delete(EventsController.deleteEventById);
 
 module.exports = router;
