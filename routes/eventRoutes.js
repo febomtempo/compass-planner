@@ -6,7 +6,8 @@ const router = express.Router();
 router
   .route('/')
   .get(EventsController.getAllEvents)
-  .post(EventsController.checkBody, EventsController.createEvent);
+  .post(EventsController.checkBody, EventsController.createEvent)
+  .delete(EventsController.deleteEventByDayOfTheWeek);
 
 router
   .route('/:id')

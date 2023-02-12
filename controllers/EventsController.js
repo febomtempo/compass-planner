@@ -94,12 +94,30 @@ exports.deleteEventById = async (req, res) => {
       });
       return;
     }
-    event.deleteOne({
+    await event.deleteOne({
       id: event.id,
     });
     res.status(200).json({
       status: 'success',
       message: 'Event deleted!',
+    });
+  } catch (err) {
+    console.log(`Error: ${err}`);
+  }
+};
+
+exports.deleteEventByDayOfTheWeek = async (req, res) => {
+  try {
+    const events = await Event.find();
+    const weekDay = req.query.dayOfTheWeek;
+    const eventsFilteredByWeekDay = events.filter(
+      (event) => event.dateTime.getDay() === +weekDay
+    );
+    const weekDayIds = eventsFilteredByWeekDay.map((e) => e.id);
+    await Event.deleteMany({ _id: { $in: weekDayIds } });
+    res.status(200).json({
+      status: 'success',
+      message: 'Event(s) deleted',
     });
   } catch (err) {
     console.log(`Error: ${err}`);
