@@ -34,19 +34,15 @@ exports.createEvent = async (req, res) => {
 
 exports.getAllEvents = async (req, res) => {
   try {
-    const events = await Event.find();
+    const events = await Event.find().select('-__v');
     const weekDay = req.query.dayOfTheWeek;
     if (req.query.dayOfTheWeek) {
       const eventsFilteredByWeekDay = events.filter(
         (event) => event.dateTime.getDay() === +weekDay
       );
-      res.status(200).json({
-        eventsFilteredByWeekDay,
-      });
+      res.status(200).json(eventsFilteredByWeekDay);
     } else {
-      res.status(200).json({
-        events,
-      });
+      res.status(200).json(events);
     }
   } catch (err) {
     console.log(`Erro: ${err}`);
@@ -63,7 +59,7 @@ exports.getEventById = async (req, res) => {
       });
       return;
     }
-    const event = await Event.findById(id);
+    const event = await Event.findById(id).select('-__v');
     if (!event) {
       res.status(404).json({
         status: 'fail',
@@ -71,9 +67,7 @@ exports.getEventById = async (req, res) => {
       });
       return;
     }
-    res.status(200).json({
-      event,
-    });
+    res.status(200).json(event);
   } catch (err) {
     console.log(`Erro: ${err}`);
   }
