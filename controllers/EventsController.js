@@ -12,14 +12,17 @@ exports.checkBody = (req, res, next) => {
 };
 
 exports.createEvent = async (req, res) => {
+  let fixedDate;
   try {
+    if (Object.keys(req.body.dateTime).length <= 10) {
+      fixedDate = req.body.dateTime.concat('T12:00:00.000Z');
+    }
     const event = {
       description: req.body.description,
-      dateTime: req.body.dateTime,
+      dateTime: fixedDate,
     };
 
     const data = await Event.create(event);
-
     res.status(201).json({
       data,
       message: 'Event created successfully',
@@ -114,11 +117,19 @@ exports.deleteEventByDayOfTheWeek = async (req, res) => {
       (event) => event.dateTime.getDay() === +weekDay
     );
     const weekDayIds = eventsFilteredByWeekDay.map((e) => e.id);
-    await Event.deleteMany({ _id: { $in: weekDayIds } });
-    res.status(200).json({
-      status: 'success',
-      message: 'Event(s) deleted',
-    });
+    const deletedEvents = await Event.deleteMany({ _id: { $in: weekDayIds } });
+    console.log(deletedEvents);
+    if (deletedEvents.deletedCount === 0) {
+      res.status(404).json({
+        status: 'fail',
+        message: 'No event(s) found',
+      });
+    } else {
+      res.status(200).json({
+        status: 'success',
+        message: `${deletedEvents.deletedCount} event(s) deleted`,
+      });
+    }
   } catch (err) {
     console.log(`Error: ${err}`);
   }
