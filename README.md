@@ -39,25 +39,28 @@ First you will need to create a MongoDB Atlas Cluster following this 9 steps:
 
 ```bash
   1 - Go to https://www.mongodb.com/cloud/atlas/register to register and sign in.
-  2 - After Sign in, select the last option to create a Free Database.
+  2 - After Sign in, choose the last option to create a Free Database.
   3 - Select the Free (Shared Option) and click "Create Cluster".
-  4 - Create a User setting up an username and password (don't forget to save this password)
-  5 - Add a new entry to IP Access List (0.0.0.0/0), then cl.ick "Finish and Close".
+  4 - Create a User setting up an username and password (do not forget to save this password)
+  5 - Add a new entry to IP Access List (0.0.0.0/0), and click "Finish and Close".
   6 - After the last step, click "Connect".
-  7 - Click "Connect you application".
+  7 - Now click "Connect you application".
   8 - Copy the connection string.
-  9 - Create a .env file and set up like ".env.example", don't forget to change "<password>" with the password you created before.
+  9 - Back to the code, create a .env file and set it up like ".env.example", paste the connection string from last step and change "<password>" with the password you created before on step 4.
 ```
 
 ## Usage
 
-Now just run the code below:
+Now that you created the .env file, just run the code below:
 
 ```sh
 npm run start:dev
 ```
 
 ## API Documentation
+
+For all routes, use this address: 127.0.0.1:PORT (3333 in our example) before. For example to get all events you have to
+do a get request like this: 127.0.0.1:3333/api/v1/events.
 
 ## GET Routes
 
@@ -155,6 +158,6 @@ npm run start:dev
 👤 **Felipe**
 
 - Github: [@febomtempo](https://github.com/febomtempo)
-- LinkedIn: [@https:\/\/www.linkedin.com\/in\/felipe-bomtempo\/](https://linkedin.com/in/https://www.linkedin.com/in/felipe-bomtempo/)
+- LinkedIn: [Felipe Bomtempo](https://www.linkedin.com/in/felipe-bomtempo/)
 
 ---
