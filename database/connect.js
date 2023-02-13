@@ -6,9 +6,7 @@ dotenv.config({ path: '.env' });
 async function connect() {
   try {
     mongoose.set('strictQuery', true);
-    await mongoose.connect(
-      `mongodb+srv://felipe:${process.env.MONGO_PASSWORD}@cluster0.bylukch.mongodb.net/?retryWrites=true&w=majority`
-    );
+    await mongoose.connect(`${process.env.MONGO_URI}`);
     console.log('Connected to Database');
   } catch (err) {
     console.log(`Connection Error: ${err}`);
